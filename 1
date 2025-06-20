@@ -1,4 +1,88 @@
-// verilog code to swap two register using temp variable and without using temp variable
+module testbench;
+  
+  initial
+    begin
+      $display("welcome to verilog programming");
+      $write("h\n");
+      // \n is for new line just like enter
+      //\t  backslash t is for tab space
+      
+      $write("i\n");
+      $write("h\ti");
+    end
+endmodule 
+==========================================================================================================================
+==========================================================================================================================
+what are the data types and why are considering wire instead of reg  and why the variable if not specified should be considered wire?
+sol: data types are majorly classified as net and reg 
+in net we have wire 
+in reg we have register 
+
+==========================================================================================================================
+==========================================================================================================================
+set of rules to declare an identifier 
+
+should start with alphabets or underscore.
+1. can contain alphabets and numbers and special characters only $ and _ 
+2. can starty with alphabet or underscore
+==========================================================================================================================
+==========================================================================================================================
+what is 4 level language and how is it different from 2 level language 
+==========================================================================================================================
+==========================================================================================================================
+what are the 4 levels 
+
+what are data types majorly classified and 
+==========================================================================================================================
+==========================================================================================================================
+what is reg and its default data type
+module testbench;
+  reg a;
+  reg [4:0]b;
+  initial
+    begin
+      $display("the default value of a is %b",a);
+      $display("the default value of b is %b",b);
+      $display("the default value of b is %d",b);
+
+    end
+endmodule 
+==========================================================================================================================
+==========================================================================================================================
+concept of vector and array and why do we need array and vector
+module testbench;
+  reg a;
+  reg [1:0]b;
+  reg [2:0]c;
+  reg [3:0]d;
+  
+  initial
+    begin
+      $display("the size of a is %d",$bits(a));
+      $display("the size of b is %d",$bits(b));
+      $display("the size of c is %d",$bits(c));
+      $display("the size of d is %d",$bits(d));
+    end
+endmodule 
+==========================================================================================================================
+==========================================================================================================================
+module testbench;
+  reg a;
+  reg [1:0]b;
+  reg [2:0]c;
+  reg [3:0]d;
+  
+  initial
+    begin
+      $display("the size of a is %0d",$bits(a));
+      $display("the size of b is %0d",$bits(b));
+      $display("the size of c is %0d",$bits(c));
+      $display("the size of d is %0d",$bits(d));
+    end
+endmodule 
+==========================================================================================================================
+==========================================================================================================================
+
 
 
 
