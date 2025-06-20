@@ -1,0 +1,13 @@
+Coding questions
+1. swapping two number using a temporary variable
+2. swapping two numbers using xor operation without using temporary variable
+3. swapping two numbers using non blocking assignment without temporary variable
+4. counting the number of 1s in 8bit given input
+5. counting the numbers of 0s in 8bit given input 
+6. masking the nth bit 
+7. Detect the raising edge in the signal 5t
+8. detecte the falling edge in the signal
+9. detect the raising edge or falling edge of the signal. 
+
+
+
