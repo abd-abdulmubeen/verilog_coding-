@@ -1,5 +1,7 @@
 2 input AND gate with gate level modelling and instantion by position 
 2 input AND gate with data flow modelling instantion by name 
+2 input AND gate with behavioural using * instantiation 
+3 input XOR and 3 input XNOR gate have same truth table 
 half adder using gate level and by position in testbench
 swapping two number using a temporary variable
 swapping two numbers using xor operation without using temporary variable
