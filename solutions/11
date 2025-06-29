@@ -1,0 +1,40 @@
+//half adder in all abstract levels
+
+
+// Code your design here
+
+module halfadder(input a,b,output carry0,sum0,carry1,sum1,output reg carry2,sum2);
+  
+assign carry0= a&b;
+assign sum0=a^b;
+    
+  and(carry1,a,b);
+  xor(sum1,a,b);
+  
+  always@(*)
+    begin
+      carry2=a&b;
+      sum2=a^b;
+    end
+  
+endmodule 
+******************************************************************************
+*****************************************************************************
+module testbench;
+  reg a,b;
+  wire carry0,sum0;
+    wire carry1,sum1;
+    wire carry2,sum2;
+  
+halfadder H( a,b, carry0,sum0,carry1,sum1,  carry2,sum2);
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b}=$random;
+          #1$display("a=%b b=%b carry0=%b sum0=%b carry1=%b sum1=%b carry2=%b sum2=%b",a,b,carry0,sum0,carry1,sum1,carry2,sum2);
+        end
+    end
+  
+endmodule 
