@@ -1,0 +1,33 @@
+//full adder with gate level modelling
+
+// Code your design here
+
+module fulladder(input a,b,c,output carry,sum);
+
+  xor(sum,a,b,c);
+  and(y1,a,b);
+  and(y2,b,c);
+  and(y3,c,a);
+
+  or(carry,y1,y2,y3);
+ 
+endmodule 
+********************************************************
+********************************************************
+module testbench;
+  reg a,b,c;
+  wire carry,sum;
+  
+  
+  fulladder H( a,b,c,carry,sum);
+  
+  initial
+    begin
+      repeat(20)
+        begin
+          {a,b,c}=$random;
+          #1$display("a=%b b=%b c=%b carry=%b sum=%b ",a,b,c,carry,sum);
+        end
+    end
+  
+endmodule 
