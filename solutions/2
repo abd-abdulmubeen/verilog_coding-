@@ -1,3 +1,4 @@
+//https://edaplayground.com/x/8XXx
 // data flow modelling
 
 module andgate(input a,b,output y);
