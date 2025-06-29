@@ -1,0 +1,39 @@
+https://edaplayground.com/x/gPUi
+// 3 input xor and xnor gate check 
+// behavioural modelling
+
+module xor_xnor(input a,b,c,output reg x,y);
+  
+  always @(*)
+    begin
+      x=a^b^c;
+      y=~(a^b)^c;
+    end
+endmodule 
+*********************************************
+module testbench;
+  reg a,b,c;
+  wire x,y;
+  
+  
+  xor_xnor A(a,b,c,x,y);
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b,c}=$random;
+     
+          #1 $display($time," the value of a=%b b=%b c=%b x=%b y=%b",a,b,c,x,y);
+
+          
+        end
+      
+    end
+  
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(0,testbench);
+    end
+endmodule 
