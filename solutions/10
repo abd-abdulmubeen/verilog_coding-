@@ -1,0 +1,29 @@
+// not gate in all abstraction levels
+
+// Code your design here
+
+
+module notgate(input a,output x,y, output reg z);
+  not(x,a);
+  
+  assign y=~a;
+  
+  always @(*)
+    z=~a;
+endmodule 
+*********************************************************
+module testbench;
+  reg a;
+  wire x,y,z;
+  
+  notgate A(a,x,y,z);
+  
+  initial
+    begin
+      repeat(10)
+        begin
+      {a}=$random;
+      #1 $display("the value of a=%b x=%b y=%b z=%b",a,x,y,z);
+    end
+    end
+endmodule 
