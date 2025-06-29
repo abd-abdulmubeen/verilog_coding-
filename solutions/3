@@ -1,0 +1,43 @@
+//https://edaplayground.com/x/gPUi
+// behavioural modelling
+
+
+module andgate(input a,b,output reg y);
+  
+  
+  always @(a,b)
+    begin
+      y=a&b;
+    end
+endmodule 
+
+********************************************
+******************************************
+module testbench;
+  reg a,b;
+  wire y;
+  reg out_y;
+  
+  andgate A(a,b,y);
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b}=$random;
+          out_y=a&&b;
+          #1 if(y==out_y)
+            $display($time,"passed the value of a=%b b=%b y=%b out_y=%b",a,b,y,out_y);
+          else
+            $display($time,"failed the value of a=%b b=%b y=%b  out_y=%b",a,b,y,out_y);
+          
+        end
+      
+    end
+  
+  initial
+    begin
+      $dumpfile("dump.vcd");
+      $dumpvars(0,testbench);
+    end
+endmodule 
