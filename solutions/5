@@ -1,0 +1,31 @@
+// 2 input or gate in all abstraction levels
+https://edaplayground.com/x/HmAV
+
+// Code your design here
+
+
+module orgate(input a,b,output x,y, output reg z);
+  or(x,a,b);
+  
+  assign y=a||b;
+  
+  always @(*)
+    z=a||b;
+endmodule 
+******************************************************
+******************************************************
+module testbench;
+  reg a,b;
+  wire x,y,z;
+  
+  orgate A(a,b,x,y,z);
+  
+  initial
+    begin
+      repeat(10)
+        begin
+      {a,b}=$random;
+      #1 $display("the value of a=%b b=%b x=%b y=%b z=%b",a,b,x,y,z);
+    end
+    end
+endmodule 
