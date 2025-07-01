@@ -1,0 +1,19 @@
+module fulladder(input a,b,c,output sum,carry);
+  assign sum= a ?(b?(c?1:0):(c?0:1)) :(b?(c?0:1):(c?1:0));
+  assign carry=a ?(b?(c?1:1):(c?1:0)):(b?(c?1:0):(c?0:0));
+endmodule 
+***************************************************************
+module tb;
+  reg a,b,c;
+  wire sum,carry;
+  
+  fulladder F(a,b,c,sum,carry);
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b,c}=$random;
+          #1 $display($time,"the values of a=%b b=%b c=%b carry=%b sum=%b",a,b,c,carry,sum);
+        end
+    end
+endmodule 
