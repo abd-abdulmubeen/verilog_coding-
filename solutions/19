@@ -1,0 +1,31 @@
+module fulladder_nor(input a,b,c,output sum,carry);
+
+  wire [8:1]w;
+  
+  nor A(w[1],a,b);
+  nor B(w[2],w[1],a);
+  nor C(w[3],w[1],b);
+  nor D(w[4],w[3],w[2]);
+  nor E(w[5],w[4],c);
+  nor F(w[6],w[4],w[5]);
+  nor G(w[7],w[5],c);
+  nor H(carry,w[5],w[1]);
+  nor I(sum,w[6],w[7]);
+endmodule 
+******************************************
+module tb;
+  reg a,b,c;
+  wire sum,carry;
+  integer i;
+  
+  fulladder_nor F( a,b,c,sum,carry);
+  
+  initial
+    begin
+      for(i=0;i<8;i=i+1)
+        begin
+          {a,b,c}=i;
+          #1 $display("the value of a=%b b=%b c=%b carry=%b sum=%b",a,b,c,carry,sum);
+    end
+    end
+endmodule 
