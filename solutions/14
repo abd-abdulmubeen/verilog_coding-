@@ -1,0 +1,20 @@
+module halfadder(input a,b,output sum,carry);
+  
+  assign sum = a ?(b? 0:1) : (b? 1:0);
+    assign carry = a ? (b? 1:0) : (b?0:0);
+endmodule 
+************************************************************
+module tb;
+  reg a,b;
+  wire sum,carry;
+  
+  halfadder F(a,b,sum,carry);
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b}=$random;
+          #1 $display($time,"the values of a=%b b=%b  carry=%b sum=%b",a,b,carry,sum);
+        end
+    end
+endmodule 
