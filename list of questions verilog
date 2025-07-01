@@ -13,6 +13,10 @@ full adder using gate level
 full adder using switch case
 half adder using conditional operator 
 full adder using conditional operator 
+half adder using nand gates
+full adder using nand gates
+half adder using nor gates
+full adder using nor gates 
 swapping two number using a temporary variable
 swapping two numbers using xor operation without using temporary variable
 swapping two numbers using non blocking assignment without temporary variable
