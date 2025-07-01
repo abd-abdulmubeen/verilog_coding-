@@ -1,0 +1,30 @@
+module nand_fulladder(input a,b,c,output sum,carry);
+  wire [7:1]w;
+  nand A(w[1],a,b);
+  nand B(w[2],w[1],a);
+  nand C(w[3],w[1],b);
+  nand D(w[4],w[2],w[3]);
+  nand E(w[5],c,w[4]);
+  nand F(w[6],w[4],w[5]);
+  nand G(w[7],w[5],c);
+  nand H(sum,w[6],w[7]);
+  nand I(carry,w[5],w[1]);
+    
+endmodule 
+********************************************************
+module tb;
+  reg a,b,c;
+  wire sum,carry;
+  integer i;
+  nand_fulladder F(a,b,c,sum,carry);
+  
+  initial
+    begin
+
+      for(i=0;i<8;i=i+1)
+        begin
+          {a,b,c}=i;
+      #1    $display($time,"the values of a=%b b=%b c=%b carry=%b sum=%b",a,b,c,carry,sum);
+        end
+    end
+endmodule 
