@@ -1,0 +1,42 @@
+
+`include "fulladder.v"
+
+
+module bitfulladder(input [3:0]a,b,output carry,output [3:0]sum);
+  
+  wire [2:0]c;
+  
+  fulladder f0(a[0],b[0],1'b0,c[0],sum[0]);
+  fulladder f1(a[1],b[1],c[0],c[1],sum[1]);
+  fulladder f2(a[2],b[2],c[1],c[2],sum[2]);
+  fulladder f3(a[3],b[3],c[2],carry,sum[3]);
+
+  
+  
+endmodule
+******************************************************************************
+module fulladder(input a,b,c,output carry,sum);
+  
+  assign sum= a^b^c;
+  assign carry= a&b|b&c|c&a;
+  
+  
+  
+endmodule  
+************************************************************************
+module tb;
+  reg [3:0]a,b;
+  wire carry;
+  wire [3:0]sum;
+  
+  bitfulladder F(a,b,carry,sum);
+  
+  initial
+begin
+  repeat(20)
+    begin
+      {a,b}=$random;
+     #1 $display("the values of a=%d b=%d carry=%b sum=%b",a,b,carry,sum);
+    end
+end
+endmodule 
