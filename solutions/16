@@ -1,0 +1,23 @@
+module halfadder_nand(input a,b,output sum,carry);
+  
+  nand A(w1,a,b);
+  nand B(w2,w1,a);
+  nand C(w3,w1,b);
+  nand D(sum,w2,w3);
+  nand E(carry,w1,w1);
+endmodule 
+********************************************
+module tb;
+  reg a,b,c;
+  wire sum,carry;
+  
+  halfadder_nand F(a,b,sum,carry);
+  initial
+    begin
+      repeat(10)
+        begin
+          {a,b}=$random;
+          #1 $display($time,"the values of a=%b b=%b  carry=%b sum=%b",a,b,carry,sum);
+        end
+    end
+endmodule 
