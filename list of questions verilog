@@ -8,8 +8,11 @@
 2 input xor gate in gate level , behvaioural and data flow modelling
 2 input xnor gate in gate level , behavioural and data flow modelling
 1 input not gate in gate level ,behavioural and data flow modelling 
-
 half adder using gate level and by position in testbench
+full adder using gate level 
+full adder using switch case
+half adder using conditional operator 
+full adder using conditional operator 
 swapping two number using a temporary variable
 swapping two numbers using xor operation without using temporary variable
 swapping two numbers using non blocking assignment without temporary variable
