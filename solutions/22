@@ -1,0 +1,39 @@
+module halfsub(input a,b,output reg borrow,diff);
+  
+//  xor A(diff,a,b);
+//  and C(borrow,~a,b);
+  
+  
+  
+// assign borrow=~a&b;
+//  assign diff= a^b;
+  
+   always @(*)
+    begin
+      case({a,b})
+        2'b00: begin borrow=0; diff=0; end
+        2'b01: begin borrow=1; diff=1; end
+        2'b10: begin borrow=0; diff=1; end
+        2'b11: begin borrow=0; diff=0; end
+
+      endcase
+    end
+ 
+endmodule 
+***************************************************************
+module tb;
+  reg a,b;
+  wire borrow,diff;
+  integer i;
+  
+  halfsub H( a,b,borrow,diff);
+  
+  initial
+    begin
+      for(i=0;i<4;i=i+1)
+        begin
+          {a,b}=i;
+          #1 $display("the value of a=%b b=%b borrow=%b diff=%b",a,b,borrow,diff);
+        end
+    end
+endmodule 
