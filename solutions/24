@@ -1,0 +1,34 @@
+`include "halfsub.v"
+
+module fullsub(input a,b,c,output  borrow,diff);
+  wire [3:1]w;
+  
+  halfsub A(a,b,w[2],w[1]);
+  halfsub B(w[1],c,w[3],diff);
+  or C(borrow,w[2],w[3]);
+
+endmodule 
+*******************************************************
+module halfsub(input a,b,output borrow,diff);
+
+  assign diff=a^b;
+  assign borrow=(~a)&b;
+endmodule
+**********************************************************
+module tb;
+  reg a,b,c;
+  wire borrow,diff;
+  integer i;
+  
+  fullsub H( a,b,c,borrow,diff);
+  
+  initial
+    begin
+      for(i=0;i<8;i=i+1)
+        begin
+          {a,b,c}=i;
+          #1 $display("the value of a=%b b=%b c=%b borrow=%b diff=%b",a,b,c,borrow,diff);
+        end
+    end
+endmodule 
+*******************************************************************************
