@@ -1,0 +1,45 @@
+module fullsub(input a,b,c,output reg borrow,diff);
+  
+/*  xor A(diff,a,b,c);
+  and B(l,~a,b);
+  xnor C(m,a,b);
+  and D(n,c,m);
+  or E(borrow,l,n);
+  
+*/  
+//  assign borrow=((~a)&b)|c&(~(a^b));
+ //assign diff= a^b^c;
+  
+   always @(*)
+    begin
+      case({a,b,c})
+        2'b000: begin borrow=0; diff=0; end
+        2'b001: begin borrow=1; diff=1; end
+        2'b010: begin borrow=1; diff=1; end
+        2'b011: begin borrow=1; diff=0; end
+        2'b100: begin borrow=0; diff=1; end
+        2'b101: begin borrow=0; diff=0; end
+        2'b110: begin borrow=0; diff=0; end
+        2'b111: begin borrow=1; diff=1; end
+
+      endcase
+    end
+ 
+endmodule 
+***********************************************************************
+module tb;
+  reg a,b,c;
+  wire borrow,diff;
+  integer i;
+  
+  fullsub H( a,b,c,borrow,diff);
+  
+  initial
+    begin
+      for(i=0;i<8;i=i+1)
+        begin
+          {a,b,c}=i;
+          #1 $display("the value of a=%b b=%b c=%b borrow=%b diff=%b",a,b,c,borrow,diff);
+        end
+    end
+endmodule 
