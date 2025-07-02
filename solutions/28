@@ -1,0 +1,36 @@
+`include "mux2by1.v"
+
+module mux_8x1(input [7:0]I,input[2:0]s,output y);
+  wire [6:1]w;
+  
+  mux2by1 A(I[1:0],s[0],w[1]); 
+  mux2by1 B(I[3:2],s[0],w[2]); 
+  mux2by1 C(I[5:4],s[0],w[3]); 
+  mux2by1 D(I[7:6],s[0],w[4]); 
+  mux2by1 E(w[2:1],s[1],w[5]); 
+  mux2by1 F(w[4:3],s[1],w[6]); 
+  mux2by1 G(w[6:5],s[2],y); 
+
+  
+  
+endmodule 
+************************************************************************
+module tb;
+  
+  reg [7:0]I;
+  reg [2:0]s;
+  wire y;
+  
+mux_8x1 M(I,s, y);  
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {I,s}=$random;
+          #1 $display("I[7]=%b I[6]=%b I[5]=%b I[4]=%b I[3]=%b I[2]=%b I[1]=%b I[0]=%b s=%b y=%b",I[7],I[6],I[5],I[4],I[3],I[2],I[1],I[0],s,y);
+    end
+    end
+  
+    
+endmodule 
