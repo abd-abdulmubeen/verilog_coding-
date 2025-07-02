@@ -1,0 +1,34 @@
+module demux(input I,input [1:0]s,output reg [3:0]y);
+  
+  always @(*)
+    begin
+      case (s)
+        2'b00 : y={3'b000,I};
+        2'b01 : y={2'b00,I,1'b0};
+        2'b10 : y={1'b0,I,2'b00};
+        2'b11 : y={I,3'b000};
+       endcase
+    end
+  
+endmodule 
+
+*****************************************************
+module tb;
+  
+  reg I;
+  reg [1:0]s;
+  wire [3:0]y;
+  
+demux M(I,s, y);  
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {I,s}=$random;
+          #1 $display("I=%b s=%b y=%b",I,s,y);
+    end
+    end
+  
+    
+endmodule 
