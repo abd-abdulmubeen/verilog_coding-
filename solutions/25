@@ -1,0 +1,28 @@
+module bit4adder_subtractor(input  [3:0]a,b,input mode,output [3:0]sum, output cout);
+  
+  wire temp;
+  assign {temp,sum} = a+(b^({4{mode}}))+mode ;
+  assign cout= mode==1 ?(temp==1?0:1):temp;
+  
+endmodule 
+**********************************************************
+module tb;
+   reg [3:0]a,b;
+  reg mode; 
+  wire [3:0]sum;
+  wire cout;
+
+  
+  bit4adder_subtractor H( a,b,mode,sum,cout);
+  
+  initial
+    begin
+      repeat(20)
+        begin
+          {a,b,mode}=$random;
+          mode=$random;
+          #1 $display("the value of a=%d b=%d mode=%d cout=%b sum=%b ",a,b,mode,cout,sum);
+        end
+    end
+    
+endmodule 
