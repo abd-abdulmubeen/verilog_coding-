@@ -15,6 +15,13 @@ module mux_8x1(input [7:0]I,input[2:0]s,output y);
   
 endmodule 
 ************************************************************************
+module mux2by1(input [1:0]I,input s,output y);
+  
+  assign y= s? I[1]: I[0];
+  
+endmodule 
+                            
+************************************************************************
 module tb;
   
   reg [7:0]I;
