@@ -1,0 +1,31 @@
+module mux_2x1(input [1:0]I,input s,output y);
+ // assign  y= ((~s)&I[0])|(s&I[1]);
+  
+  wire [2:1]w;
+  
+//  and A(w[1],I[0],~s);
+//  and B(w[2],I[1],s);
+//  or C(y,w[1],w[2]);
+  
+ assign y=s?I[1]:I[0];
+endmodule 
+********************************************************
+module tb;
+  
+  reg [1:0]I;
+  reg s;
+  wire y;
+  
+mux_2x1 M(I,s, y);  
+  
+  initial
+    begin
+      repeat(10)
+        begin
+          {I,s}=$random;
+     #1 $display("I[1]=%b I[0]=%b s=%b y=%b",I[1],I[0],s,y);
+    end
+    end
+  
+    
+endmodule 
