@@ -1,0 +1,40 @@
+module Dff(input clk,reset,d, output reg q);
+  always @(posedge clk)
+    begin
+      if(reset)
+        q<=0;
+	else
+      	q<=d;
+    end
+endmodule 
+***************************************************
+module tb;
+  reg clk,reset,d;
+  wire q;
+  
+  always #2 clk=!clk;
+  
+  Dff A( clk,reset,d,   q);
+  
+  initial
+    begin
+      clk=0;
+      reset=1;
+      d=1;
+      $monitor("the vlaue of d=%b q=%d",d,q);
+      #3 reset=0;
+       d=0;
+      #2 d=1;
+      #2 d=0;
+      #2 d=1; 
+      reset=1;
+      #2 reset=0;
+      #20 $finish;
+    end
+  
+ initial 
+     begin
+       $dumpvars(0,tb);
+       $dumpfile("waveform.vcd");
+     end
+endmodule 
