@@ -1,0 +1,42 @@
+// SR latch using nor gates
+module latch_nor(input s,r,output q,qbar);
+ 
+  nor A(qbar,s,q);
+  nor  B(q,r,qbar);
+
+assign q=~(r|qbar);
+assign qbar=~(s|q);
+
+  always @(*)
+    begin
+      q=~(r|qbar);
+      qbar=~(s|q);
+    end
+  
+endmodule 
+********************************************************
+
+
+
+
+*******************************************************
+module testbench;
+  reg s,r;
+  wire q,qbar;
+  
+   latch_nor G( s,r, q,qbar);
+  
+  initial
+    begin
+       s=1;r=0;
+      #1 $display("the value of s=%b r=%b q=%b qbar=%b",s,r,q,qbar);
+      s=0;r=0;
+      #1 $display("the value of s=%b r=%b q=%b qbar=%b",s,r,q,qbar);
+            s=0;r=1;
+      #1 $display("the value of s=%b r=%b q=%b qbar=%b",s,r,q,qbar);
+            s=1;r=0;
+      #1 $display("the value of s=%b r=%b q=%b qbar=%b",s,r,q,qbar);
+            s=1;r=1;
+      #1 $display("the value of s=%b r=%b q=%b qbar=%b",s,r,q,qbar);
+    end
+endmodule 
