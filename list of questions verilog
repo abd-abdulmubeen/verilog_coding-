@@ -17,6 +17,28 @@ half adder using nand gates
 full adder using nand gates
 half adder using nor gates
 full adder using nor gates 
+full adder using half adder 
+4 bit full adder 
+half subtractor
+full subtractor
+full subtractor using half subtractor
+4 bit adder and subtractor
+2x1 mux
+4x1 mux
+8x1 using 2x1 mux
+16x1 using 4x1 mux
+demux 2x4 
+
+
+
+
+
+
+
+level triggered D flip flop
+edge triggered D flip flop
+asynchronous reset D flip flop
+SR latch 
 swapping two number using a temporary variable
 swapping two numbers using xor operation without using temporary variable
 swapping two numbers using non blocking assignment without temporary variable
