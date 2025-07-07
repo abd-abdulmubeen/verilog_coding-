@@ -38,7 +38,14 @@ demux 2x4
 level triggered D flip flop
 edge triggered D flip flop
 asynchronous reset D flip flop
-SR latch 
+SR latch using nor gates
+SR latch using nand gates
+JK latch using nor gates
+JK latch using nand gates
+D latch using nand gates
+D latch using nor gates
+T latch using nor gates
+T latch using nand gates
 swapping two number using a temporary variable
 swapping two numbers using xor operation without using temporary variable
 swapping two numbers using non blocking assignment without temporary variable
