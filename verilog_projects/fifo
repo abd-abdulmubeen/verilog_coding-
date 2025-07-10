@@ -1,1 +1,97 @@
+module fifo(input clock,reset,wr_en,rd_en,input [7:0]wr_data,output reg [7:0]rd_data,output reg full,empty);
+  
+integer i;
+  reg [3:0]wr_ptr,rd_ptr;
+  reg [7:0]mem[7:0];
+  
+  
+  always @(posedge clock)
+    begin
+      if(reset)
+        begin
+      for(i=0;i<8;i=i+1)
+        
+          mem[i]<=0;
+          wr_ptr<=0;
+          rd_ptr<=0;
+        
+        end
+    end
+  
+  always@(posedge clock)
+    begin
+      if(wr_en&&full!=1)
+        begin
+          mem[wr_ptr[2:0]]=wr_data;
+          wr_ptr=wr_ptr+1;
+        end
+    end
+  
+  always @(posedge clock)
+    begin
+      if(rd_en&& empty!=1)
+        begin
+          rd_data<=mem[rd_ptr[2:0]];
+          rd_ptr<=rd_ptr+1;
+        end
+    end
+  
+  assign full = (wr_ptr[3]!=rd_ptr[3] )&&( wr_ptr[2:0]==rd_ptr[2:0])? 1:0;
+  assign empty = (wr_ptr == rd_ptr) ? 1:0;
+  
+endmodule 
+**************************************************************
+**************************************************************
+// Code your testbench here
+// or browse Examples
 
+module tb;
+
+  reg clock,reset,wr_en,rd_en;
+  reg [7:0]wr_data;
+  wire [7:0]rd_data;
+  wire full,empty;
+
+  
+  always #5 clock=!clock;
+
+fifo F(clock,reset,wr_en,rd_en, wr_data, rd_data,full,empty);
+  
+  
+  task resett();
+    @(negedge clock) reset=1;
+    @(negedge clock) reset=0;
+  endtask
+  
+  task write();
+    @(negedge clock) wr_en=1;wr_data=$random;
+    @(negedge clock) wr_en=0;
+    
+  endtask
+  
+  task read();
+    @(negedge clock) rd_en=1;
+    @(negedge clock) rd_en=0;
+  endtask
+
+  initial
+    begin
+      clock=0;
+      resett();
+      repeat(10) write();
+      repeat(10) read();
+
+
+      #100 $finish;
+      
+    end
+  
+  initial
+    begin
+      $dumpvars();
+      $dumpfile("waveform.vcd");
+    end
+  
+  
+  
+endmodule 
