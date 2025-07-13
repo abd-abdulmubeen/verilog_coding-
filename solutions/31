@@ -1,0 +1,21 @@
+// Code your design here
+module bitadder4(input [3:0]a,b,output [4:0]sum);
+  assign sum = a+b;
+endmodule 
+***********************************************************
+***********************************************************
+module tb;
+  reg [3:0]a,b;
+  wire [4:0]sum;
+  
+  bitadder4 B( a,b,sum);
+  
+  initial
+    begin
+      repeat(10)
+      begin
+        {a,b}=$random;
+        $display("the values of a=%b a=%d b=%b b=%d sum=%b sum=%d ",a,a,b,b,sum,sum);
+      end
+    end
+endmodule 
