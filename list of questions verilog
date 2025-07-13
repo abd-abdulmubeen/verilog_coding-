@@ -28,6 +28,7 @@ full subtractor using half subtractor
 8x1 using 2x1 mux
 16x1 using 4x1 mux
 demux 2x4 
+4 bit full adder using assign
 
 
 
