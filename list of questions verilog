@@ -35,8 +35,6 @@ demux 2x4
 
 
 
-
-
 level triggered D flip flop
 edge triggered D flip flop
 asynchronous reset D flip flop
