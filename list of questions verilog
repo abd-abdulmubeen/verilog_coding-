@@ -29,7 +29,8 @@ full subtractor using half subtractor
 16x1 using 4x1 mux
 demux 2x4 
 4 bit full adder using assign
-
+4x2 priority encoder using vectored mux
+8x3 priority encoder using vectored mux
 
 
 
