@@ -1,0 +1,56 @@
+module ram(input clock,reset,wr,rd,input [2:0] wraddr,rdaddr,input [7:0]wrdata,output reg [7:0]rddata);
+  reg [7:0]mem[7:0];
+  
+  
+  always @(posedge clock)
+    begin
+      if(wr) mem[wraddr]=wrdata;
+      if(rd) rddata=mem[rdaddr];
+    end
+endmodule 
+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+module tb;
+  reg clock=0,reset,wr,rd;
+  reg [2:0]wraddr,rdaddr;
+  reg [7:0]wrdata;
+  wire [7:0]rddata;
+ ram A( clock,reset,wr,rd, wraddr,rdaddr,wrdata,rddata);
+  
+  always #5 clock=!clock;
+  
+  task write(int i,j);
+    @(negedge clock)wr=1;wraddr=i;wrdata=j;
+    @(negedge clock) wr=0;
+  endtask
+  
+  task read(int i);
+    @(negedge clock) rd=1;rdaddr=i;
+    @(negedge clock) rd=0;
+  endtask
+  
+  task write_read(int i,j,k);
+    @(negedge clock) wr=1;rd=1;wraddr=i;wrdata=j;rdaddr=k;
+    @(negedge clock) wr=0;rd=0;
+  endtask
+  
+  
+  
+  initial  $monitor("t=%0t,clock=%0b,wr=%0b,wraddr=%0d,wdata=%0d,rd=%0b,rdaddr=%0d,rddata=%0d",$time,clock,wr,wraddr,wrdata,rd,rdaddr,rddata);
+  
+  initial 
+    begin
+    
+      
+      repeat(20)   write_read($random,$random,$random);
+
+      read(6);
+      #100 $finish;
+    end
+  
+  initial 
+    begin
+      $dumpvars;
+      $dumpfile("a.vcd");
+    end
+endmodule 
