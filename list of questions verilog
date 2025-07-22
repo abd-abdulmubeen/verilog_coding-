@@ -31,9 +31,9 @@ demux 2x4
 4 bit full adder using assign
 4x2 priority encoder using vectored mux
 8x3 priority encoder using vectored mux
-
-
-
+tristate buffer active high
+tristate buffer active low 
+bidirectional buffer 
 
 level triggered D flip flop
 edge triggered D flip flop
