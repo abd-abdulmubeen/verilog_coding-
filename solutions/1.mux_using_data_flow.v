@@ -1,6 +1,6 @@
 
-//Data flow modelling of mux
-//https://www.edaplayground.com/x/s9sF
+//Data flow modelling of 2:1 mux
+
 
 module mux(input [1:0]I, input s, output  y);
   assign y= s ? I[1]: I[0];
@@ -26,3 +26,4 @@ module tb;
     end
   
 endmodule 
+
