@@ -1,4 +1,4 @@
-1. Gate level modelling 2 input AND gate
-2. Data flow modelling 2 input AND gate
-3. Behavioural modelling 2 input AND gate 
+1. Gate level modelling 2:1 mux gate
+2. Data flow modelling  2:1 mux gate
+3. Behavioural modelling  2:1 mux gate
 
